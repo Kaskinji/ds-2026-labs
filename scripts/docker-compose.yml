@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  valuator-redis:
+    image: redis:7-alpine  # Легковесный образ Redis на Alpine Linux
+    container_name: valuator-redis
+    ports:
+      - "6379:6379"  # Проброс стандартного порта Redis
+    volumes:
+      - redis-data:/data  # Храним данные Redis в томе
+    command: redis-server --appendonly yes  # Включаем персистентность
+    restart: unless-stopped  # Автоматический перезапуск при падении
+    networks:
+      - valuator-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  valuator-network:
+    driver: bridge

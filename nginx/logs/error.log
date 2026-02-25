@@ -66,3 +66,7 @@
 2026/02/24 22:10:11 [error] 26232#24320: *8 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5002/", host: "localhost:8080"
 2026/02/24 22:10:13 [error] 26232#24320: *8 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5001/", host: "localhost:8080"
 2026/02/24 22:10:13 [error] 26232#24320: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "http://backend/favicon.ico", host: "localhost:8080", referrer: "http://localhost:8080/"
+2026/02/25 16:49:14 [alert] 1252#13332: OpenEvent("ngx_master_21232") failed (2: The system cannot find the file specified)
+2026/02/25 16:49:14 [alert] 17996#1964: OpenEvent("ngx_master_21864") failed (2: The system cannot find the file specified)
+2026/02/25 16:49:14 [alert] 5192#19160: OpenEvent("ngx_master_20200") failed (2: The system cannot find the file specified)
+2026/02/25 16:49:19 [error] 276#6404: *1 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5004/", host: "localhost:8080"
