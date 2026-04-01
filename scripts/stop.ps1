@@ -1,18 +1,18 @@
-# stop.ps1 (упрощенный)
-Write-Host "Остановка компонентов..." -ForegroundColor Yellow
+# stop.ps1 (СѓРїСЂРѕС‰РµРЅРЅС‹Р№)
+Write-Host "РћСЃС‚Р°РЅРѕРІРєР° РєРѕРјРїРѕРЅРµРЅС‚РѕРІ..." -ForegroundColor Yellow
 
-# Остановка Nginx
-Write-Host "Остановка Nginx..." -ForegroundColor Yellow
+# РћСЃС‚Р°РЅРѕРІРєР° Nginx
+Write-Host "РћСЃС‚Р°РЅРѕРІРєР° Nginx..." -ForegroundColor Yellow
 & "..\nginx\nginx.exe" -s stop 2>$null
 Start-Sleep -Seconds 1
 Get-Process -Name "nginx" -ErrorAction SilentlyContinue | Stop-Process -Force
 
-# Остановка Redis
-Write-Host "Остановка Redis..." -ForegroundColor Yellow
+# РћСЃС‚Р°РЅРѕРІРєР° Redis
+Write-Host "РћСЃС‚Р°РЅРѕРІРєР° Redis..." -ForegroundColor Yellow
 docker stop valuator-redis 2>$null
 
-# Остановка приложений
-Write-Host "Остановка веб-приложений..." -ForegroundColor Yellow
+# РћСЃС‚Р°РЅРѕРІРєР° РїСЂРёР»РѕР¶РµРЅРёР№
+Write-Host "РћСЃС‚Р°РЅРѕРІРєР° РІРµР±-РїСЂРёР»РѕР¶РµРЅРёР№..." -ForegroundColor Yellow
 Get-Process -Name "dotnet" -ErrorAction SilentlyContinue | Stop-Process -Force
 
-Write-Host "Все компоненты остановлены!" -ForegroundColor Green
+Write-Host "Р’СЃРµ РєРѕРјРїРѕРЅРµРЅС‚С‹ РѕСЃС‚Р°РЅРѕРІР»РµРЅС‹!" -ForegroundColor Green

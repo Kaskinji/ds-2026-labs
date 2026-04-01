@@ -1,4 +1,4 @@
-﻿# start.ps1 (исправленная версия)
+# start.ps1 (исправленная версия)
 Write-Host "Запуск веб-приложений..." -ForegroundColor Green
 
 $projectPath = "..\Valuator\Valuator.csproj" 
@@ -42,6 +42,14 @@ Start-Sleep -Seconds 5
 # Запуск Nginx
 Write-Host "Запуск Nginx..." -ForegroundColor Green
 Push-Location "..\nginx"
+@(
+    ".\temp",
+    ".\temp\client_body_temp",
+    ".\temp\proxy_temp",
+    ".\temp\fastcgi_temp",
+    ".\temp\uwsgi_temp",
+    ".\temp\scgi_temp"
+) | ForEach-Object { New-Item -ItemType Directory -Force -Path $_ | Out-Null }
 Start-Process -WindowStyle Hidden -FilePath ".\nginx.exe"
 Pop-Location
 
@@ -53,9 +61,10 @@ Write-Host "- Прокси: http://localhost:8080" -ForegroundColor Cyan
 # Проверка Redis
 try {
     $redisPing = docker exec valuator-redis redis-cli ping 2>$null
-    if ($redisPing -eq "PONG") {
-        Write-Host "✓ Redis: OK" -ForegroundColor Green
+    if ($redisPing -eq 'PONG') {
+        Write-Host 'Redis: OK' -ForegroundColor Green
     }
-} catch {
-    Write-Host " Redis: проверка не удалась" -ForegroundColor Yellow
+}
+catch {
+    Write-Host 'Redis: проверка не удалась' -ForegroundColor Yellow
 }
